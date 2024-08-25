@@ -1,25 +1,39 @@
-def queue(inp):
-    queue = []
-    for i in range(len(inp)):
-        ans = inp[i].split()
-        # print(ans[0], ans[1])
-        if ans[0] == "E":
-            queue.append(ans[1])
-            print("Add", ans[1], "index is", (len(queue)-1))
-        elif ans[0] == "D":
-            if len(queue) != 0:
-                
-                if queue:
-                    print("Pop", queue[0], "size in queue is", (len(queue)-1))
-                    queue.pop(0)
-            else: 
-                print("-1")
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def __str__(self):
+        return str(self.items)
     
-    if len(queue) != 0:
-        print("Number in Queue is : ", queue)
-    else:
-        print("Empty")
+    def enqueue(self, i):
+        self.items.append(i)
 
+    def dequeue(self):
+        if not self.isEmpty():
+            return self.items.pop(0)
+        return
 
+    def isEmpty(self):
+        return self.items == []
+
+    def size(self):
+        return len(self.items)
+
+queue = Queue()
 inp = input("Enter Input : ").split(",")
-queue(inp)
+
+for i in inp:
+    item = i.split()
+    if item[0] == "E":
+        queue.enqueue(item[1])
+        print(f"Add {item[1]} index is {queue.size() - 1}")
+    elif item[0] == "D":
+        if not queue.isEmpty():
+            print(f"Pop {queue.dequeue()} size in queue is {queue.size()}")
+        else:
+            print("-1")
+
+if not queue.isEmpty():
+    print(f"Number in Queue is :  {queue}")
+else:
+    print("Empty")
