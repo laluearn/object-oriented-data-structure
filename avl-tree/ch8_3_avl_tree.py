@@ -24,17 +24,21 @@ class AVLTree:
             # left left case
             if balance > 1 and data < root.left.data:
                 root = self.rotateRight(root)
+                print("Right Right Rotation")
             # right right case
             elif balance < -1 and data >= root.right.data:
                 root = self.rotateLeft(root)
+                print("Left Left Rotation")
             # left right case
             elif balance > 1 and data >= root.left.data:
                 root.left = self.rotateLeft(root.left)
                 root = self.rotateRight(root)
+                print("Left Right Rotation")
             # right left case 
             elif balance < -1 and data < root.right.data:
                 root.right = self.rotateRight(root.right)
                 root = self.rotateLeft(root)
+                print("Right Left Rotation")
         return root
 
     def rotateRight(self, root):
@@ -65,10 +69,10 @@ def printTree90(node, level = 0):
 
 myTree = AVLTree() 
 root = None
-
+print(" *** AVL Tree Insert Element ***")
 data = [int(i) for i in input("Enter Input : ").split()]
 for e in data:
     print("insert :",e)
     root = myTree.insert(root, e)
     printTree90(root)
-    print("===============")
+    print("====================")
